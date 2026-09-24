@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#17110b">
+  <meta name="description" content="Império Medieval — construa, evolua e comande seu reino.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Império Medieval</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <div class="brand">⚔️ IMPÉRIO MEDIEVAL</div>
+        <div id="playerName" class="player-name">Senhor do Reino</div>
+      </div>
+      <button id="saveBtn" class="icon-btn" title="Salvar">💾</button>
+    </header>
+
+    <section class="resources" id="resources"></section>
+
+    <main>
+      <section id="cityScreen" class="screen active">
+        <div class="hero">
+          <div>
+            <span class="eyebrow">SEU REINO</span>
+            <h1>Fortaleza de Aurora</h1>
+            <p>Construa seu império e prepare seu exército.</p>
+          </div>
+          <div class="castle-level">Nível <strong id="castleLevel">1</strong></div>
+        </div>
+
+        <div class="section-title">
+          <h2>Construções</h2>
+          <button id="resetBtn" class="text-btn">Recomeçar</button>
+        </div>
+        <div id="buildings" class="building-grid"></div>
+
+        <div class="section-title">
+          <h2>Atividade</h2>
+        </div>
+        <div id="activityLog" class="activity"></div>
+      </section>
+
+      <section id="armyScreen" class="screen">
+        <div class="page-heading">
+          <span class="eyebrow">FORÇAS DO REINO</span>
+          <h1>Exército</h1>
+          <p>Treine tropas para defender seu território.</p>
+        </div>
+        <div id="armyList" class="card-list"></div>
+      </section>
+
+      <section id="mapScreen" class="screen">
+        <div class="page-heading">
+          <span class="eyebrow">MUNDO</span>
+          <h1>Mapa</h1>
+          <p>Explore as terras ao redor da sua fortaleza.</p>
+        </div>
+        <div class="map">
+          <div class="mountain m1">▲ ▲</div>
+          <div class="mountain m2">▲ ▲ ▲</div>
+          <div class="river"></div>
+          <button class="location castle" data-place="Sua Fortaleza">🏰<span>Você</span></button>
+          <button class="location village" data-place="Vila de Pedra">🏘️<span>Vila</span></button>
+          <button class="location camp" data-place="Acampamento Nórdico">⛺<span>Acampamento</span></button>
+          <button class="location ruins" data-place="Ruínas Antigas">🏛️<span>Ruínas</span></button>
+          <div class="map-note">Mapa inicial — novos territórios serão desbloqueados conforme o reino evolui.</div>
+        </div>
+      </section>
+
+      <section id="battleScreen" class="screen">
+        <div class="page-heading">
+          <span class="eyebrow">CAMPO DE BATALHA</span>
+          <h1>Combate</h1>
+          <p>Envie suas tropas contra um inimigo de treinamento.</p>
+        </div>
+        <div class="battle-card">
+          <div class="fighter"><span>🏰</span><strong>Seu Reino</strong><small id="playerPower">Poder: 0</small></div>
+          <div class="versus">VS</div>
+          <div class="fighter"><span>🛡️</span><strong>Guarnição Rebelde</strong><small>Poder: 35</small></div>
+        </div>
+        <button id="attackBtn" class="primary-btn">⚔️ Iniciar batalha</button>
+        <div id="battleResult" class="result"></div>
+      </section>
+
+      <section id="profileScreen" class="screen">
+        <div class="page-heading">
+          <span class="eyebrow">COMANDANTE</span>
+          <h1>Meu Perfil</h1>
+        </div>
+        <div class="profile-card">
+          <div class="avatar">👑</div>
+          <h2 id="profileName">Senhor do Reino</h2>
+          <p>Governante da Fortaleza de Aurora</p>
+          <div class="stats">
+            <div><strong id="profileLevel">1</strong><span>Nível</span></div>
+            <div><strong id="profilePower">0</strong><span>Poder</span></div>
+            <div><strong id="profileTroops">0</strong><span>Tropas</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-screen="cityScreen">🏰<span>Cidade</span></button>
+      <button class="nav-item" data-screen="armyScreen">⚔️<span>Exército</span></button>
+      <button class="nav-item" data-screen="mapScreen">🗺️<span>Mapa</span></button>
+      <button class="nav-item" data-screen="battleScreen">🔥<span>Batalha</span></button>
+      <button class="nav-item" data-screen="profileScreen">👑<span>Perfil</span></button>
+    </nav>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="js/game.js"></script>
+</body>
+</html>

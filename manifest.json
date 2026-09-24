@@ -1,0 +1,10 @@
+{
+  "name": "Império Medieval",
+  "short_name": "Império",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#100c08",
+  "theme_color": "#17110b",
+  "description": "Construa, evolua e comande seu reino.",
+  "icons": []
+}
