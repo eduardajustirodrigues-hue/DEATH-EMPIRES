@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0d0a08"><meta name="description" content="Império Medieval — seu reino começa aqui.">
-<link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css"><title>Império Medieval</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0e12">
+  <title>DEATH-EMPIRES — 3D Kingdom</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="intro" class="intro">
-  <div class="intro-scene"></div><div class="intro-vignette"></div>
-  <div class="intro-content">
-    <div class="crest">⚔️</div><div class="intro-kicker">UM NOVO REINO NASCE</div>
-    <h1>IMPÉRIO<br><span>MEDIEVAL</span></h1><p>Construa. Comande. Conquiste.</p>
-    <button id="enterBtn" class="gold-btn">ENTRAR NO REINO</button>
-    <small>Fortaleza de Aurora • Reino 001</small>
+  <div id="loading"><div class="loader-ring"></div><strong>DEATH-EMPIRES</strong><span>Carregando reino...</span></div>
+  <div id="game">
+    <div id="hud">
+      <div class="top-row">
+        <div class="kingdom">
+          <div class="crest">♜</div>
+          <div><b>Fortaleza de Aurora</b><small>Reino do Norte · Lv. 1</small></div>
+        </div>
+        <div class="resources">
+          <div>🪵 <b id="wood">1.200</b></div>
+          <div>🌾 <b id="food">1.000</b></div>
+          <div>🪨 <b id="stone">700</b></div>
+          <div>⛓️ <b id="iron">400</b></div>
+          <div>🪙 <b id="gold">250</b></div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <button data-action="mail">✉️<span>Correio</span></button>
+        <button data-action="quests">📜<span>Missões</span></button>
+        <button data-action="alliance">🛡️<span>Aliança</span></button>
+        <button data-action="settings">⚙️<span>Menu</span></button>
+      </div>
+
+      <div class="bottom-panel">
+        <div class="selection">
+          <div class="selection-icon">🏰</div>
+          <div><strong id="selectionTitle">Fortaleza de Aurora</strong><small id="selectionText">Toque em uma construção para interagir.</small></div>
+        </div>
+        <div class="bottom-actions">
+          <button id="cityBtn">🏰 Cidade</button>
+          <button id="armyBtn">⚔️ Exército</button>
+          <button id="mapBtn">🌎 Mundo</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="crosshair">+</div>
+    <div id="toast"></div>
+    <div id="modal" class="hidden">
+      <div class="modal-card">
+        <button id="closeModal">✕</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+    <div id="controls-hint">Arraste para girar · Pinça para zoom · Toque nas construções</div>
   </div>
-</div>
-<div id="app" class="hidden">
-<header class="topbar">
-  <div class="brand"><span class="brand-mark">⚔️</span><div><b>IMPÉRIO MEDIEVAL</b><small id="playerName">Senhor do Reino</small></div></div>
-  <div class="top-actions"><button id="mailBtn">✉️</button><button id="saveBtn">💾</button><button id="menuBtn">☰</button></div>
-</header>
-<section class="resource-bar" id="resources"></section>
-<main>
-<section id="cityScreen" class="screen active">
-  <div class="city-scene">
-    <div class="sky-glow"></div><div class="castle-art">🏰</div><div class="city-title"><span>SEU REINO</span><h1>Fortaleza de Aurora</h1><p>O coração do seu império</p></div>
-    <div class="castle-badge">CASTELO<br><b>Lv.<span id="castleLevel">1</span></b></div>
-  </div>
-  <div class="quick-row"><button data-screen-jump="armyScreen">⚔️ <b>Exército</b><small id="quickPower">0 poder</small></button><button data-screen-jump="mapScreen">🌎 <b>Mapa mundial</b><small>Explorar</small></button><button data-screen-jump="battleScreen">🔥 <b>Guerra</b><small>Atacar</small></button></div>
-  <div class="section-title"><div><span>DESENVOLVIMENTO</span><h2>Construções</h2></div><button id="resetBtn">RECOMEÇAR</button></div>
-  <div id="buildings" class="building-grid"></div>
-  <div class="section-title"><div><span>CRÔNICAS DO REINO</span><h2>Atividade</h2></div></div><div id="activityLog" class="activity"></div>
-</section>
-<section id="armyScreen" class="screen"><div class="page-heading"><span>FORÇAS DO REINO</span><h1>Exército</h1><p>Treine soldados e prepare suas marchas.</p></div><div class="power-banner">⚔️ <b id="playerPower">Poder: 0</b><small>Força total do reino</small></div><div id="armyList" class="card-list"></div></section>
-<section id="mapScreen" class="screen"><div class="page-heading"><span>CONTINENTE</span><h1>Mapa Mundial</h1><p>Envie tropas para explorar e conquistar.</p></div><div class="world-map"><div class="map-label">REINO DE AURORA</div><div class="terrain t1">⛰️</div><div class="terrain t2">🌲🌲</div><div class="terrain t3">🌲</div><div class="river"></div><button class="location castle" data-place="Sua Fortaleza">🏰<small>Você</small></button><button class="location mine" data-place="Mina de Ferro">⛏️<small>Mina</small></button><button class="location village" data-place="Vila de Pedra">🏘️<small>Vila</small></button><button class="location camp" data-place="Acampamento Bárbaro">⛺<small>Bárbaros Lv.1</small></button><button class="location ruins" data-place="Ruínas Antigas">🏛️<small>Ruínas</small></button><div class="map-coords">X: 104 • Y: 287</div></div></section>
-<section id="battleScreen" class="screen"><div class="page-heading"><span>GUERRA</span><h1>Campo de Batalha</h1><p>Escolha um alvo e lance seu primeiro ataque.</p></div><div class="battle-card"><div class="fighter"><span>🏰</span><b>Fortaleza de Aurora</b><small id="battlePower">Poder: 0</small></div><div class="vs">VS</div><div class="fighter enemy"><span>🛡️</span><b>Guarnição Rebelde</b><small>Poder: 35</small></div></div><button id="attackBtn" class="gold-btn wide">⚔️ INICIAR MARCHA</button><div id="battleResult" class="result"></div></section>
-<section id="profileScreen" class="screen"><div class="page-heading"><span>SENHOR DO REINO</span><h1>Perfil</h1></div><div class="profile-card"><div class="avatar">👑</div><h2 id="profileName">Senhor do Reino</h2><p>Governante da Fortaleza de Aurora</p><div class="stats"><div><b id="profileLevel">1</b><small>Nível</small></div><div><b id="profilePower">0</b><small>Poder</small></div><div><b id="profileTroops">0</b><small>Tropas</small></div></div></div><div class="profile-menu"><button>🏆 Conquistas <span>›</span></button><button>🎒 Inventário <span>›</span></button><button>⚙️ Configurações <span>›</span></button></div></section>
-</main>
-<nav class="bottom-nav"><button class="nav-item active" data-screen="cityScreen">🏰<span>Cidade</span></button><button class="nav-item" data-screen="armyScreen">⚔️<span>Exército</span></button><button class="nav-item" data-screen="mapScreen">🌎<span>Mapa</span></button><button class="nav-item" data-screen="battleScreen">🔥<span>Guerra</span></button><button class="nav-item" data-screen="profileScreen">👑<span>Perfil</span></button></nav>
-<div id="toast" class="toast"></div>
-</div><script src="game.js"></script>
-</body></html>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
